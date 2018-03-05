@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+    {% if wrong_user %}
+    <font color="#f58026"> Username does not exist! </font>
+    {% elif wrong_pw %}
+    <font color="#f58026"> Incorrect password! </font>
+    {% elif not_confirmed %}
+    <font color="#f58026"> User is not confirmed! </font>
+    {% else %}
+    <br>
+    {% endif %}
+
+    <form action="/login" id="login" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Chatham username" type="text"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+
+    <script>
+    let form = document.getElementById("login");
+    form.onsubmit = function() {
+
+        if (!form.username.value)
+        {
+            alert("Missing username");
+            return false;
+        }
+        else if (!form.password.value)
+        {
+            alert("Missing password");
+            return false;
+        }
+        return true;
+
+    };
+    </script>
+
+{% endblock %}

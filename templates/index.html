@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+<div>
+    <font color="#f58026" size="5"><b>Current balance: {{balance}} {{ccy}}</b></font>
+</div>
+
+{% if table %}
+
+<div>
+    <br>
+    <font color="#919295" size="4"><b>Charges history:</b></font>
+</div>
+<div style="overflow-x:auto; overflow-y:auto;">
+    <br>
+    <table class="table">
+        <tr style="position:relative;">
+            <th class="counterparty">Counterparty</th>
+            <th class="charge">Charge</th>
+            <th class="notes">Notes</th>
+            <th class="home_ccy">{{user_ccy}} Amount</th>
+            <th class="fx_rate">FX Rate</th>
+            <th class="date">Date</th>
+        </tr>
+        <div>
+        <tbody>
+            {% for row in table %}
+            <tr>
+                <td>{{row.by_user}}</td>
+                <td>{{row.amount}} {{row.ccy}}</td>
+                <td>{{row.notes}}</td>
+                {% if row.ccy == user_ccy %}
+                    <td> </td>
+                {% else %}
+                    <td>{{row.user_amount}} {{user_ccy}}</td>
+                {% endif %}
+                <td>{{row.rate}}</td>
+                <td>{{row.date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </div>
+    </table>
+</div>
+
+{% endif %}
+
+{% endblock %}

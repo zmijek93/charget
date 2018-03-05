@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Charge
+{% endblock %}
+
+{% block main %}
+
+    {% if charge_added %}
+    <font color="#f58026"> Charge added! </font>
+    {% elif wrong_amount %}
+    <font color="#f58026"> Please provide numeric amount </font>
+    {% elif charge_added %}
+    <font color="#f58026"> Charge added! </font>
+    {% else %}
+    <br>
+    {% endif %}
+
+    <form action="/charge" id="charge" method="post">
+        <div class="form-group">
+            <select autofocus class="form-control" name="user">
+                 <option value="" selected disabled hidden>Choose user</option>
+                {% for user in users %}
+                <option value={{user}}>{{user}}</option>
+                {% endfor %}
+            </select>
+            <input autocomplete="off" autofocus class="form-control" name="amount" placeholder="Amount" type="text" size= "11"/>
+            <select autofocus class="form-control" name="ccy">
+                 <option value="" selected disabled hidden>Currency</option>
+                <option value="PLN">PLN</option>
+                <option value="GBP">GBP</option>
+                <option value="USD">USD</option>
+            </select>
+            <input autocomplete="off" autofocus class="form-control" name="notes" placeholder="Notes" type="text" size="11"/>
+        <button class="btn btn-primary" type="submit">Add Charge</button>
+        </div>
+    </form>
+
+    <script>
+    let form = document.getElementById("charge");
+    form.onsubmit = function() {
+
+        if (!form.user.value)
+        {
+            alert("Must choose user");
+            return false;
+        }
+        else if (!form.amount.value)
+        {
+            alert("Missing amount");
+            return false;
+        }
+        else if (!form.ccy.value)
+        {
+            alert("Must choose currency");
+            return false;
+        }
+        return true;
+
+    };
+    </script>
+
+{% endblock %}

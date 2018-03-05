@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Forgot Password
+{% endblock %}
+
+{% block main %}
+
+    {% if no_user %}
+    <font color="#f58026"> User does not exist! </font>
+    {% elif email_sent %}
+    <font color="#f58026"> Log in via email link and change password </font>
+    {% else %}
+    <br>
+    {% endif %}
+
+    <form action="/forgot_pw" id="forgot_pw" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Chatham username" type="text"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Reset Password</button>
+    </form>
+
+    <script>
+    let form = document.getElementById("forgot_pw");
+    form.onsubmit = function() {
+
+        if (!form.username.value)
+        {
+            alert("Missing username");
+            return false;
+        }
+        return true;
+
+    };
+    </script>
+
+{% endblock %}

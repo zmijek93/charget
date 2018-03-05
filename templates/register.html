@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    {% if user_exists %}
+    <font color="#f58026"> Username already exists! </font>
+    {% elif email_sent %}
+    <font color="#f58026"> Activation link was sent to your Chatham email </font>
+    {% else %}
+    <br>
+    {% endif %}
+
+    <form action="/register" id="registration" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Chatham username" type="text"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirm Password" type="password"/>
+        </div>
+        <div class="form-group">
+            <select autofocus class="form-control" name="ccy">
+                 <option value="" selected disabled hidden>Currency</option>
+                <option value="PLN">PLN</option>
+                <option value="GBP">GBP</option>
+                <option value="USD">USD</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+    <script>
+    let form = document.getElementById("registration");
+    form.onsubmit = function() {
+
+        if (!form.username.value)
+        {
+            alert("Missing username");
+            return false;
+        }
+        else if (!form.password.value)
+        {
+            alert("Missing password");
+            return false;
+        }
+        else if (form.password.value != form.confirmation.value)
+        {
+            alert("Passwords don't match");
+            return false;
+        }
+        else if (!((form.ccy.value == "PLN") || (form.ccy.value == "GBP") || (form.ccy.value == "USD")))
+        {
+            alert("Please choose currency");
+            return false;
+        }
+        return true;
+
+    };
+    </script>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: x-large;
+}
+
+/* colors for brand */
+nav .navbar-brand .grey
+{
+    color: #919295;
+}
+
+nav .navbar-brand .orange
+{
+    color: #ED7F11;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: 200px;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+.counterparty
+{
+    min-width: 160px;
+}
+
+.charge
+{
+    min-width: 120px;
+}
+
+.notes
+{
+    min-width: 160px;
+}
+
+.home_ccy
+{
+    min-width: 160px;
+}
+
+.fx_rate
+{
+    min-width: 120px;
+}
+
+.date
+{
+    min-width: 120px;
+}
