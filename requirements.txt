@@ -1,3 +1,11 @@
 cs50
 Flask
 Flask-Session
+tempfile
+werkzeug.exceptions
+werkzeug.security
+apscheduler.schedulers.background
+functools
+itsdangerous
+forex_python.converter
+datetime
